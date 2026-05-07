@@ -1,0 +1,17 @@
+<article id="<%= dom_id post %>" class="post-card">
+  <div class="post-card-meta">
+    <%= time_tag post.created_at, post.created_at.strftime("%d %b %Y") %>
+    <span><%= pluralize(post.content.to_s.split.size, "word") %></span>
+  </div>
+
+  <h3><%= link_to post.title.presence || "Untitled post", post %></h3>
+
+  <p>
+    <%= truncate(post.content.to_s, length: 180, separator: " ") %>
+  </p>
+
+  <div class="post-card-footer">
+    <%= link_to "Читати", post, class: "text-link" %>
+    <%= link_to "Редагувати", edit_post_path(post), class: "text-link muted-link" %>
+  </div>
+</article>

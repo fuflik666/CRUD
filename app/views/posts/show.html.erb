@@ -1,0 +1,25 @@
+<% content_for :title, @post.title.presence || "Post" %>
+
+<% if notice.present? %>
+  <p class="flash flash-notice"><%= notice %></p>
+<% end %>
+
+<article class="article-layout">
+  <header class="article-header">
+    <%= link_to "Назад до блогу", posts_path, class: "back-link" %>
+    <p class="eyebrow">Published <%= time_tag @post.created_at, @post.created_at.strftime("%d %b %Y") %></p>
+    <h1><%= @post.title.presence || "Untitled post" %></h1>
+  </header>
+
+  <div class="article-body">
+    <%= simple_format(@post.content.presence || "Цей пост поки не має тексту.") %>
+  </div>
+
+  <footer class="article-actions">
+    <%= link_to "Редагувати", edit_post_path(@post), class: "btn btn-primary" %>
+    <%= link_to "Усі пости", posts_path, class: "btn btn-secondary" %>
+    <div class="danger-action">
+      <%= button_to "Видалити", @post, method: :delete, class: "btn btn-danger" %>
+    </div>
+  </footer>
+</article>

@@ -1,0 +1,28 @@
+<%= form_with(model: post, class: "post-form") do |form| %>
+  <% if post.errors.any? %>
+    <div class="form-errors">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field-group">
+    <%= form.label :title, "Заголовок" %>
+    <%= form.text_field :title, placeholder: "Наприклад: Як писати щодня" %>
+  </div>
+
+  <div class="field-group">
+    <%= form.label :content, "Текст поста" %>
+    <%= form.textarea :content, rows: 14, placeholder: "Почніть з головної думки..." %>
+  </div>
+
+  <div class="form-actions">
+    <%= form.submit(post.persisted? ? "Оновити пост" : "Опублікувати пост", class: "btn btn-primary") %>
+    <%= link_to "Скасувати", post.persisted? ? post : posts_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>

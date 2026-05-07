@@ -1,0 +1,56 @@
+<% content_for :title, "Inkline Blog" %>
+
+<% if notice.present? %>
+  <p class="flash flash-notice"><%= notice %></p>
+<% end %>
+
+<section class="blog-hero" aria-labelledby="blog-title">
+  <div class="hero-copy">
+    <p class="eyebrow">AI generated editorial concept</p>
+    <h1 id="blog-title">Inkline Blog</h1>
+    <p class="hero-lead">
+      Простір для коротких ідей, довгих нотаток і текстів, які хочеться перечитувати.
+    </p>
+
+    <div class="hero-actions">
+      <%= link_to "Створити пост", new_post_path, class: "btn btn-primary" %>
+      <a class="btn btn-secondary" href="#posts">Переглянути записи</a>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <div class="visual-paper visual-paper-main">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="visual-paper visual-paper-side">
+      <span></span>
+      <span></span>
+    </div>
+    <div class="visual-mark">B</div>
+  </div>
+</section>
+
+<section class="section-heading">
+  <div>
+    <p class="eyebrow">Latest writing</p>
+    <h2>Усі пости</h2>
+  </div>
+  <p><%= pluralize(@posts.size, "post") %> in the collection</p>
+</section>
+
+<div id="posts" class="post-grid">
+  <% if @posts.any? %>
+    <% @posts.each do |post| %>
+      <%= render post %>
+    <% end %>
+  <% else %>
+    <article class="empty-state">
+      <p class="eyebrow">No drafts yet</p>
+      <h2>Перший пост ще чекає на свою ідею.</h2>
+      <p>Створіть запис, щоб наповнити головну сторінку блогу контентом.</p>
+      <%= link_to "Написати перший пост", new_post_path, class: "btn btn-primary" %>
+    </article>
+  <% end %>
+</div>

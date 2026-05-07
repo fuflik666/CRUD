@@ -1,0 +1,16 @@
+<% content_for :title, "Editing post" %>
+
+<section class="form-page">
+  <div class="form-intro">
+    <%= link_to "Назад до блогу", posts_path, class: "back-link" %>
+    <p class="eyebrow">Edit article</p>
+    <h1>Редагувати пост</h1>
+    <p>Оновіть текст, збережіть зміни або поверніться до перегляду публікації.</p>
+  </div>
+
+  <%= render "form", post: @post %>
+
+  <div class="secondary-nav">
+    <%= link_to "Переглянути пост", @post, class: "text-link" %>
+  </div>
+</section>
